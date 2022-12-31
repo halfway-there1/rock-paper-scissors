@@ -1,3 +1,10 @@
+// "use strict";
+
+let playerSelection = "";
+let computerSelection = "";
+let playerScore = 0;
+let computerScore = 0;
+
 function getRandomInt(maxLimit) {
   return Math.floor(Math.random() * maxLimit);
 }
@@ -5,39 +12,14 @@ function getRandomInt(maxLimit) {
 function getComputerChoice() {
   let choice = ["Rock", "Paper", "Scissor"];
   let i = getRandomInt(1000) % 3;
-  console.log(i);
   return choice[i];
 }
 
-function playRound(playerSelection, computerSelection) {
-  playerSelection = playerSelection.toLowerCase();
-  computerSelection = computerSelection.toLowerCase();
-
-  if (playerSelection === computerSelection) {
-    return null;
-  }
-
-  let winner = "c"; // "c" --> computer  "p" --> player
-  if (playerSelection === "rock" && computerSelection === "scissor") {
-    winner = "p";
-  } else if (playerSelection === "paper" && computerSelection === "rock") {
-    winner = "p";
-  } else if (playerSelection === "scissor" && computerSelection === "paper") {
-    winner = "p";
-  }
-
-  if (winner === "p") {
-    return "p";
-  } else {
-    return "c";
-  }
-}
-
-function getFinalResultMessage(p_score, c_score) {
-  let resultMessage;
-  if (p_score === c_score) {
+function getFinalResultMessage() {
+  let resultMessage = "";
+  if (playerScore === computerScore) {
     resultMessage = "It's a tie.";
-  } else if (p_score > c_score) {
+  } else if (playerScore > computerScore) {
     resultMessage = "You Win!";
   } else {
     resultMessage = "You Lose!";
@@ -46,42 +28,74 @@ function getFinalResultMessage(p_score, c_score) {
   return resultMessage;
 }
 
-function getRoundResultMessage(
-  playerSelection,
-  computerSelection,
-  roundResult
-) {
-  if (roundResult === null) return "It's a tie";
+function getRoundResultMessage(winner) {
+  let msg = "";
 
-  let resultMessage;
-  if (roundResult === "p") {
-    resultMessage = `You Win! ${playerSelection} beats ${computerSelection}`;
-  } else {
-    resultMessage = `You Lose! ${computerSelection} beats ${playerSelection}`;
-  }
-  return resultMessage;
-}
-
-function game() {
-  let p_score = 0,
-    c_score = 0;
-  for (let i = 0; i < 5; i++) {
-    let playerSelection = prompt(
-      "Enter your move.(Rock/Paper/Scissor)",
-      "Paper"
-    );
-    let computerSelection = getComputerChoice();
-
-    let roundResult = playRound(playerSelection, computerSelection);
-    alert(
-      getRoundResultMessage(playerSelection, computerSelection, roundResult)
-    );
-
-    p_score += roundResult === "p";
-    c_score += roundResult === "c";
+  switch (true) {
+    case winner === "n":
+      msg = "It's a Tie";
+      break;
+    case winner === "p":
+      msg = `You Win! ${playerSelection} beats ${computerSelection}`;
+      break;
+    case winner === "c":
+      msg = `You Lose! ${computerSelection} beats ${playerSelection}`;
+      break;
   }
 
-  alert("FINAL STANDING : " + getFinalResultMessage(p_score, c_score));
+  return msg;
 }
 
-game();
+const result = document.getElementById("result");
+
+function playRound(selection) {
+  playerSelection = selection.toLowerCase();
+  computerSelection = getComputerChoice().toLowerCase();
+
+  let winner = "c"; // "c" --> computer  "p" --> player "n" --> none
+  switch (true) {
+    case playerSelection === computerSelection:
+      winner = "n";
+      break;
+    case playerSelection === "rock" && computerSelection === "scissor":
+      winner = "p";
+      break;
+    case playerSelection === "paper" && computerSelection === "rock":
+      winner = "p";
+      break;
+    case playerSelection === "scissor" && computerSelection === "paper":
+      winner = "p";
+      break;
+  }
+
+  console.log(getRoundResultMessage(winner));
+
+  if (winner === "p") playerScore++;
+  if (winner === "c") computerScore++;
+
+  result.textContent = `You = ${playerScore}\nComputer = ${computerScore}`;
+
+  if (playerScore === 5 || computerScore === 5) {
+    result.textContent += "\n" + getFinalResultMessage();
+    playerScore = 0;
+    computerScore = 0;
+  }
+}
+
+let rock_btn = document.getElementById("rock-btn");
+let paper_btn = document.getElementById("paper-btn");
+let scissor_btn = document.getElementById("scissor-btn");
+
+console.log(rock_btn);
+console.log(paper_btn);
+console.log(scissor_btn);
+
+rock_btn.addEventListener("click", function () {
+  playRound("Rock");
+});
+paper_btn.addEventListener("click", function () {
+  playRound("Paper");
+});
+scissor_btn.addEventListener("click", function () {
+  playRound("Scissor");
+});

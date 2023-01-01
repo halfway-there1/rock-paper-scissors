@@ -8,15 +8,24 @@
     <link rel="stylesheet" href="./style.css">
   </head>
   <body>
-
+    <script src="./script.js" defer></script>
+    
+    <div class="header">
+      <h1>ROCK PAPER SCISSOR</h1>
+      <p>Score first 5 points to win the Game</p>
+    </div>
+    
     <div id="btn-container">
       <button class="btn" id="rock-btn">Rock</button>
       <button class="btn" id="paper-btn">Paper</button>
       <button class="btn" id="scissor-btn">Scissor</button>
     </div>
 
-    <div id="result">You = 0<br>Computer = 0</div>
+    <div id="score">You = 0<br>Computer = 0</div>
+    <div class="result">
+      <p id="won-lose-tie"></p>
+      <p id="comp-choice"></p>
+    </div>
 
-    <script src="./script.js" defer></script>
   </body>
 </html>

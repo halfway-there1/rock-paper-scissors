@@ -1,3 +1,9 @@
+.header {
+    text-align: center;
+}
+
+/* .header */
+
 #btn-container {
     height: 200px;
     display: flex;
@@ -25,13 +31,20 @@ button:hover {
     background-color: rgb(49, 49, 230);
 }
 
-#result {
+#score {
     margin: 20px;
     width: auto;
     text-align: center;
     font-size: large;
     font-weight: bold;
     white-space: pre-line;
-    border: 2px solid rgb(228, 136, 207);
+    /* border: 2px solid rgb(228, 136, 207); */
     border-radius: 8px;
+}
+
+.result {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: large;
+    font-weight: bold;
 }

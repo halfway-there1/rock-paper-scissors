@@ -1,4 +1,4 @@
-// "use strict";
+"use strict";
 
 let playerSelection = "";
 let computerSelection = "";
@@ -28,25 +28,32 @@ function getFinalResultMessage() {
   return resultMessage;
 }
 
-function getRoundResultMessage(winner) {
+const scoreContainer = document.getElementById("score");
+
+const won_lose_tie = document.getElementById("won-lose-tie");
+const compChoice = document.getElementById("comp-choice");
+
+function setResult(winner) {
   let msg = "";
 
   switch (true) {
     case winner === "n":
-      msg = "It's a Tie";
+      msg = "It's a Tie 👔";
+      won_lose_tie.style.color = "black";
       break;
     case winner === "p":
-      msg = `You Win! ${playerSelection} beats ${computerSelection}`;
+      msg = `You Win! 😎`;
+      won_lose_tie.style.color = "green";
       break;
     case winner === "c":
-      msg = `You Lose! ${computerSelection} beats ${playerSelection}`;
+      msg = `You Lose! 😞`;
+      won_lose_tie.style.color = "red";
       break;
   }
 
-  return msg;
+  won_lose_tie.textContent = msg;
+  compChoice.textContent = `Computer chose ${computerSelection}`;
 }
-
-const result = document.getElementById("result");
 
 function playRound(selection) {
   playerSelection = selection.toLowerCase();
@@ -68,15 +75,15 @@ function playRound(selection) {
       break;
   }
 
-  console.log(getRoundResultMessage(winner));
+  setResult(winner);
 
   if (winner === "p") playerScore++;
   if (winner === "c") computerScore++;
 
-  result.textContent = `You = ${playerScore}\nComputer = ${computerScore}`;
+  scoreContainer.textContent = `You = ${playerScore}\nComputer = ${computerScore}`;
 
   if (playerScore === 5 || computerScore === 5) {
-    result.textContent += "\n" + getFinalResultMessage();
+    scoreContainer.textContent += "\n" + getFinalResultMessage();
     playerScore = 0;
     computerScore = 0;
   }

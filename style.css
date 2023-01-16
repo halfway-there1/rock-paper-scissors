@@ -1,50 +1,86 @@
-.header {
-    text-align: center;
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-/* .header */
+@font-face {
+  font-family: myFirstFont;
+  src: url(./fonts/Rowdies-Regular.ttf);
+}
+
+@font-face {
+  font-family: myFirstFont;
+  src: url(./fonts/Rowdies-Bold.ttf);
+  font-weight: bold;
+}
+
+img {
+  width: 15%;
+  height: auto;
+}
+
+h1 {
+  margin-top: -25px;
+  margin-bottom: -10px;
+}
+
+.header {
+  font-family: myFirstFont, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: larger;
+  text-align: center;
+}
+
+.container p {
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  font-weight: bold;
+}
 
 #btn-container {
-    height: 200px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+  height: 200px;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 button {
-    height: 100px;
-    width: 100px;
-    padding: 20px;
-    text-align: center;
-    background-color: rgb(22, 160, 215);
-    font-family: 'Courier New', Courier, monospace;
-    font-size: large;
-    font-weight: bold;
-    color: yellow;
-    border: none;
-    border-radius: 8px;
-    box-sizing: content-box;
+  height: 100px;
+  width: 100px;
+  padding: 20px;
+  text-align: center;
+  background-color: rgb(22, 160, 215);
+  font-family: 'Courier New', Courier, monospace;
+  font-size: large;
+  font-weight: bold;
+  color: yellow;
+  border: none;
+  border-radius: 8px;
+  box-sizing: content-box;
 }
 
 button:hover {
-    background-color: rgb(49, 49, 230);
+  background-color: rgb(49, 49, 230);
 }
 
 #score {
-    margin: 20px;
-    width: auto;
-    text-align: center;
-    font-size: large;
-    font-weight: bold;
-    white-space: pre-line;
-    /* border: 2px solid rgb(228, 136, 207); */
-    border-radius: 8px;
+  width: auto;
+  text-align: center;
+  font-size: large;
+  font-weight: bold;
+  white-space: pre-line;
+  /* border: 2px solid rgb(228, 136, 207); */
+  border-radius: 8px;
 }
 
 .result {
-    text-align: center;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: large;
-    font-weight: bold;
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: large;
+  font-weight: bold;
 }

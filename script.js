@@ -17,9 +17,7 @@ function getComputerChoice() {
 
 function getFinalResultMessage() {
   let resultMessage = '';
-  if (playerScore === computerScore) {
-    resultMessage = "It's a tie.";
-  } else if (playerScore > computerScore) {
+  if (playerScore === 5) {
     resultMessage = 'You Win!';
   } else {
     resultMessage = 'You Lose!';
